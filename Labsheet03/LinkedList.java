@@ -47,7 +47,7 @@ public class LinkedList {
 		if(head == null) {
 			head = new_node;
 		}else {
-			Node current_node = new_node;
+			Node current_node = head;
 			while (current_node.next != null) {
 				current_node = current_node.next;
 			}
@@ -79,19 +79,38 @@ public class LinkedList {
 				while(current_node.next.next != null) {
 					current_node = current_node.next;
 				}
+                current_node.next = current_node.next.next;
 			}
 		}
 	}	
 	public int length() {
-		return 0;
+        Node current_node = head;
+        int count = 0;
+        while (current_node != null){
+            count++;
+            current_node = current_node.next;
+        }
+        return count;
 	}
 	public Object get(int position) {
-		return null;
+        Node current_node = head;
+        int count = 0;
+        while (count != position && current_node != null){
+            count++;
+            current_node = current_node.next;
+        }
+        return current_node.data;
 	}
 	public void set(int position, Object value) {
-		
-	}
+        Node current_node = head;
+        int count = 0;
+        while (count != position && current_node != null){
+            count++;
+            current_node = current_node.next;
+        }
+        current_node.data = value;
+    }
 	public void clear() {
-		head = null;
-	}
+        head = null;
+    }
 }
