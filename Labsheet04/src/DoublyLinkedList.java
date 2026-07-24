@@ -1,17 +1,14 @@
 
 public class DoublyLinkedList {
 	
-	// Attributes in Class DoublyLinkedList
 	private Node head;
 	private Node tail;
 	
-	// Default Constructor
 	public DoublyLinkedList () {
 		this.head = null;
 		this.tail = null;
 	}
 	
-	// Method for traverse all nodes
 	public String traversal() {
 		Node current_node = head;
 		String result = "[";
@@ -68,11 +65,32 @@ public class DoublyLinkedList {
 	}
 	
 	public void remove(int position) {
-		
+		if(position == 0) {
+			Node current_node = head;
+			head = current_node.next;
+
+		}else {
+			Node current_node = head;
+			int current_position = 0;
+			while (current_node.next.next != null && current_position < position -1) {
+				current_node = current_node.next;
+				current_position++;
+			}
+			current_node.next = current_node.next.next;
+		}
 	}
 
 	public String backwardTraversal() {
-		return null;
+		Node current_node = tail;
+		String result = "[";
+		boolean first = true;
+		while (current_node != null) {
+			result += (!first ? ", " : "") + current_node.data;
+			current_node = current_node.previous;
+			first = false;
+		}
+		result += "]";
+		return result;
 	}
 	
 }
