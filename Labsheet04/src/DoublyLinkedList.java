@@ -1,4 +1,4 @@
-
+package src;
 public class DoublyLinkedList {
 	
 	private Node head;
@@ -22,7 +22,6 @@ public class DoublyLinkedList {
 		return result;
 	}
 
-	// Method for inserting at the end of list
 	public void insert(Object value) {
 		Node new_node = new Node(value);
 		
@@ -51,7 +50,7 @@ public class DoublyLinkedList {
 			int current_position = 0;
 			while(current_node !=null && current_position < position-1) {
 				current_node = current_node.next;
-				position++;	
+                current_position++;
 			}
 			new_node.previous = current_node;
 			new_node.next = current_node.next;
@@ -66,18 +65,29 @@ public class DoublyLinkedList {
 	
 	public void remove(int position) {
 		if(position == 0) {
-			Node current_node = head;
-			head = current_node.next;
-
+            head = head.next;
+            if (head != null) {
+                head.previous = null;
+            } else {
+                tail = null;
+            }
 		}else {
-			Node current_node = head;
-			int current_position = 0;
-			while (current_node.next.next != null && current_position < position -1) {
-				current_node = current_node.next;
-				current_position++;
-			}
-			current_node.next = current_node.next.next;
-		}
+            Node current_node = head;
+            int current_position = 0;
+            while (current_node.next.next != null && current_position < position - 1) {
+                current_node = current_node.next;
+                current_position++;
+            }
+            if (current_node.next == null) return;
+
+            current_node.next = current_node.next.next;
+
+            if (current_node.next != null) {
+                current_node.next.previous = current_node;
+            } else {
+                tail = current_node;
+            }
+        }
 	}
 
 	public String backwardTraversal() {

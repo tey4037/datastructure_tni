@@ -1,3 +1,4 @@
+package src;
 import java.util.LinkedList;
 
 public class ShoppingCart {
@@ -25,7 +26,8 @@ public class ShoppingCart {
 		
 		cart.set(2, "Phone Holder");
 		System.out.println(cart);
-		
+
+        System.out.println();
 		System.out.println(cart.getLast());
 		
 	}
