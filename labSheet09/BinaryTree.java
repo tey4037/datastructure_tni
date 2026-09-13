@@ -131,48 +131,47 @@ public class BinaryTree {
 				}
 			}
 	}
-	public void delete(int target) {
-		searchDeleteNode(target);
-		if (root == null) {
-			System.out.println("Empty tree");
-		}else if (deleteNode == null) {
-			System.out.println("Cannot found data");
-		}else {
-			if (deleteNode.left == null && deleteNode.right == null) {
-				if (parent.left != null && parent.left.data == deleteNode.data) {
-					parent.left = null;
-				}else {
-					parent.right = null;
-				}
-			}
-			else if (deleteNode.left != null && deleteNode.right != null) {
-				node successorParent  = deleteNode;
-				node successor = deleteNode.left;
-				while (successor.left != null) {
-				successorParent = successor;
-				successor = successor.left;
-				}
-				deleteNode.data = successor.data;
-					if(successorParent.left == successor) {
-							successorParent.left = successor.right;	
-					}else {
-							successorParent.rigt = successor.right;
-					}
-			else {
-				if(deleteNode.left != null) {
-					if (parent.left != null && parent.left.data == deleteNode.data) {
-						parent.left = deleteNode.left;
-					}else {
-						parent.right = deleteNode.left;
-					}
-				}else {
-					if(parent.left != null && parent.left.data == deleteNode.data) {
-						parent.left = deleteNode.left;
-					}else {
-						parent.right = deleteNode.right;
-					}
-				}
-			}
-		}
-	}
+    public void delete(int target) {
+        searchDeleteNode(target);
+        if (root == null) {
+            System.out.println("Empty tree");
+        } else if (deleteNode == null) {
+            System.out.println("Cannot found data");
+        } else {
+            if (deleteNode.left == null && deleteNode.right == null) {
+                if (parent.left != null && parent.left.data == deleteNode.data) {
+                    parent.left = null;
+                } else {
+                    parent.right = null;
+                }
+            } else if (deleteNode.left != null && deleteNode.right != null) {
+                node successorParent = deleteNode;
+                node successor = deleteNode.right;
+                while (successor.left != null) {
+                    successorParent = successor;
+                    successor = successor.left;
+                }
+                deleteNode.data = successor.data;
+                if (successorParent.left == successor) {
+                    successorParent.left = successor.right;
+                } else {
+                    successorParent.right = successor.right;
+                }
+            } else {
+                if (deleteNode.left != null) {
+                    if (parent.left != null && parent.left.data == deleteNode.data) {
+                        parent.left = deleteNode.left;
+                    } else {
+                        parent.right = deleteNode.left;
+                    }
+                } else {
+                    if (parent.left != null && parent.left.data == deleteNode.data) {
+                        parent.left = deleteNode.right;
+                    } else {
+                        parent.right = deleteNode.right;
+                    }
+                }
+            }
+        }
+    }
 }
